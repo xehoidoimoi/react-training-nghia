@@ -1,25 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+    createBrowserRouter,
+} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import Home from './pages/home/Home';
+import Login from "./pages/login/Login";
+import Main from "./pages/main/Main";
+import Register from './pages/register/Register';
+import Settings from "./pages/settings/Settings";
+import Profile from "./pages/profile/Profile";
+import Article from "./pages/article/Article";
+import Favorites from "./components/favorites/Favorites";
+import CreateArticle from "./pages/create article/CreateArticle";
 
-export default App;
+export const router = createBrowserRouter([
+    {
+        element: <Main />,
+        children: [
+            {
+                path: "/",
+                element: <Home />,
+            },
+            // {
+            //     path: "/article",
+            //     element: <Article />,
+            // },
+            {
+                path: "/register",
+                element: <Register />,
+            },
+            {
+                path: "/login",
+                element: <Login />,
+            },
+            {
+                path: "/settings",
+                element: <Settings />,
+            },
+            {
+                path: "/profile/:username",
+                element: <Profile />,
+                children: [
+                    {
+                        path: "/profile/:username/favorites",
+                        element: <Favorites />,
+                    },
+                ]
+            },
+            {
+                path: "/article/:title",
+                element: <Article />,
+            },
+            {
+                path: "/editor",
+                element: <CreateArticle />,
+            },
+            {
+                path: "/editor/:slug",
+                element: <CreateArticle />,
+            },
+        ],
+    },
+]);
+
