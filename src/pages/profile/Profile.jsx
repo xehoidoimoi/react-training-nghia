@@ -19,7 +19,7 @@ function Profile() {
     // * Get Profile
     const { profiles, isFetching } = useSelector(state => state.profiles);
     // const usernameUser = users.currentUser?.user.username;
-    // console.log("profiles", profiles)
+    console.log("profiles", profiles)
     // * Get User
     const users = useSelector(state => state.users);
     const usernameUser = users.currentUser?.user.username;

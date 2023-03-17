@@ -132,7 +132,7 @@ export const deleteArticleFavorites = async (dispatch, slug, eventTarget) => {
 export const getProfiles = async (dispatch, username) => {
     dispatch(getProfilesStart());
     try {
-        const res = await userRequest.get(`profiles/${username}`);
+        const res = await publicRequest.get(`profiles/${username}`);
         dispatch(getProfilesSuccess(res.data));
     } catch (error) {
         // console.log(error)
