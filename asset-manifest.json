@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/xehoidoimoi/deploy-github-react-traning-nghia.git/static/css/main.d3000e97.css",
-    "main.js": "/xehoidoimoi/deploy-github-react-traning-nghia.git/static/js/main.9d0e891e.js",
-    "index.html": "/xehoidoimoi/deploy-github-react-traning-nghia.git/index.html",
-    "main.d3000e97.css.map": "/xehoidoimoi/deploy-github-react-traning-nghia.git/static/css/main.d3000e97.css.map",
-    "main.9d0e891e.js.map": "/xehoidoimoi/deploy-github-react-traning-nghia.git/static/js/main.9d0e891e.js.map"
+    "main.css": "/xehoidoimoi/react-training-nghia.git/static/css/main.d3000e97.css",
+    "main.js": "/xehoidoimoi/react-training-nghia.git/static/js/main.9d0e891e.js",
+    "index.html": "/xehoidoimoi/react-training-nghia.git/index.html",
+    "main.d3000e97.css.map": "/xehoidoimoi/react-training-nghia.git/static/css/main.d3000e97.css.map",
+    "main.9d0e891e.js.map": "/xehoidoimoi/react-training-nghia.git/static/js/main.9d0e891e.js.map"
   },
   "entrypoints": [
     "static/css/main.d3000e97.css",
