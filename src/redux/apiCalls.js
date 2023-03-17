@@ -13,7 +13,7 @@ export const login = async (dispatch, user, navigate) => {
     dispatch(loginStart());
     try {
         const res = await publicRequest.post("/users/login", user);
-        console.log("login", res.data)
+        // console.log("login", res.data)
         dispatch(loginSuccess(res.data));
         navigate("/")
     } catch (error) {
@@ -27,11 +27,11 @@ export const userUpdated = async (dispatch, bodyUpdate, navigate) => {
     try {
         const res = await userRequest.put("/user", bodyUpdate);
         dispatch(userUpdatedSuccess(res.data));
-        console.log("userUpdatedSuccess", res.data)
+        // console.log("userUpdatedSuccess", res.data)
         navigate(`/profile/${res.data.user.username}`)
     } catch (error) {
         dispatch(userUpdatedFailure());
-        console.log("error", error, bodyUpdate)
+        // console.log("error", error, bodyUpdate)
     }
 }
 
@@ -45,7 +45,7 @@ export const articleGlobal = async (dispatch, users) => {
                 ? await userRequest.get("/articles?limit=300&offset=0")
                 : await publicRequest.get("/articles?limit=300&offset=0");
         dispatch(getArticleSuccess(res.data));
-        console.log("articleGlobal", res.data)
+        // console.log("articleGlobal", res.data)
     } catch (error) {
         // console.log(error.response.status)
         dispatch(getArticleFailure());
@@ -84,7 +84,7 @@ export const getArticleFavorites = async (dispatch, username) => {
     try {
         const res = await userRequest.get(`/articles?favorited=${username}&limit=20&offset=0`);
         dispatch(getArticleFavoritesSuccess(res.data));
-        console.log("ArticleFavoritesAPI", res.data)
+        // console.log("ArticleFavoritesAPI", res.data)
     } catch (error) {
         // console.log(error)
         dispatch(getArticleFavoritesFailure());
@@ -101,7 +101,7 @@ export const addArticleFavorites = async (dispatch, slug, eventTarget,) => {
         dispatch(addArticleFavoritesSuccess(res.data));
         eventTarget.disabled = false;
         eventTarget.classList.add("active");
-        console.log("postFavorites", res.data)
+        // console.log("postFavorites", res.data)
     } catch (error) {
         // console.log(error)
         dispatch(addArticleFavoritesFailure());
@@ -116,13 +116,13 @@ export const deleteArticleFavorites = async (dispatch, slug, eventTarget) => {
     try {
         const res = await userRequest.delete(`/articles/${slug}/favorite`);
         dispatch(deleteArticleFavoritesSuccess(res.data));
-        console.log("deleteFavorites", res.data)
+        // console.log("deleteFavorites", res.data)
         // setProfileFavorited(res.data);
         eventTarget.disabled = false;
         eventTarget.classList.remove("active");
 
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         dispatch(deleteArticleFavoritesFailure());
         eventTarget.disabled = false;
     }
@@ -173,7 +173,7 @@ export const getComments = async (dispatch, slug) => {
     try {
         const res = await userRequest.get(`articles/${slug}/comments`);
         dispatch(getCommentsSuccess(res.data));
-        console.log("getCommentsAPI", res.data)
+        // console.log("getCommentsAPI", res.data)
     } catch (error) {
         // console.log(error)
         dispatch(getCommentsFailure());
@@ -186,9 +186,9 @@ export const postComments = async (dispatch, slug, comment) => {
     try {
         const res = await userRequest.post(`articles/${slug}/comments`, comment);
         dispatch(postCommentsSuccess(res.data));
-        console.log("postCommentsAPI", res.data)
+        // console.log("postCommentsAPI", res.data)
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         dispatch(postCommentsFailure());
     }
 }
@@ -199,9 +199,9 @@ export const deleteComments = async (dispatch, slug, id) => {
     try {
         const res = await userRequest.delete(`articles/${slug}/comments/${id}`);
         dispatch(deleteCommentsSuccess(id));
-        console.log("deleteCommentsAPI", res.data)
+        // console.log("deleteCommentsAPI", res.data)
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         dispatch(deleteCommentsFailure());
     }
 }
@@ -217,9 +217,9 @@ export const postNewArticles = async (dispatch, article, navigate, setIsFetching
         dispatch(postNewArticlesSuccess(res.data));
         navigate(`/article/${res.data.article.slug}`)
         setIsFetching(false)
-        console.log("postNewArticlesAPI", res.data)
+        // console.log("postNewArticlesAPI", res.data)
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         setTitleError(error.response.data.errors.title)
         setDescError(error.response.data.errors.description)
         setBodyError(error.response.data.errors.body)
@@ -235,9 +235,9 @@ export const deleteNewArticles = async (dispatch, slug, navigate,) => {
         const res = await userRequest.delete(`articles/${slug}`);
         // dispatch(deleteNewArticlesSuccess(id));
         navigate("/")
-        console.log("deleteNewArticlesAPI", res.data)
+        // console.log("deleteNewArticlesAPI", res.data)
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         dispatch(deleteNewArticlesFailure());
     }
 }
@@ -251,9 +251,9 @@ export const updateNewArticles = async (dispatch, slug, article, navigate, setIs
         // dispatch(updateNewArticlesSuccess(id));
         navigate(`/article/${res.data.article.slug}`)
         setIsFetching(false)
-        console.log("updateNewArticlesAPI", res.data)
+        // console.log("updateNewArticlesAPI", res.data)
     } catch (error) {
-        console.log(error)
+        // console.log(error)
         dispatch(updateNewArticlesFailure());
         setIsFetching(false)
     }

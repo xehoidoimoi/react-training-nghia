@@ -10,7 +10,7 @@ import LoadingSpin from "react-loading-spin";
 function Article() {
     const dispatch = useDispatch();
     const location = useLocation();
-    console.log("location", location)
+    // console.log("location", location)
     const params = useParams();
     const slug = params.title
     const inputRef = useRef();
@@ -25,7 +25,7 @@ function Article() {
 
     // const article = state.article;
     const [ article, setArticle ] = useState(null)
-    console.log("article", article)
+    // console.log("article", article)
 
     const users = useSelector(state => state.users);
     // console.log(users.currentUser)
@@ -36,11 +36,11 @@ function Article() {
 
     // * Get Comments State
     let { comments } = useSelector(state => state.comments);
-    console.log("comments state", comments)
+    // console.log("comments state", comments)
     // const commentsState = useSelector(state => state.comments);
     // console.log("commentsState", commentsState)
     comments = comments?.slice().sort(function (a, b) { return Date.parse(b.createdAt) - Date.parse(a.createdAt) });
-    console.log("commentsSorted", comments)
+    // console.log("commentsSorted", comments)
 
     // * Get Profile
     const { profiles, isFetching } = useSelector(state => state.profiles);
@@ -56,7 +56,7 @@ function Article() {
         // * Get Article By Slug when app run
         const getArticleBySlug = async () => {
             const res = await publicRequest.get(`/articles/${slug}`);
-            console.log("getArticleBySlug", res.data.article);
+            // console.log("getArticleBySlug", res.data.article);
             setArticle(res.data.article)
         };
         getArticleBySlug()
@@ -92,7 +92,7 @@ function Article() {
     const handleCommentChange = (e) => {
         setComment({ "comment": { "body": e.target.value } })
     };
-    console.log("comment", comment);
+    // console.log("comment", comment);
 
     // * Handle Post Comment 
     const handlePostComment = (e) => {
@@ -319,9 +319,9 @@ function Article() {
                                                                 <Link href="" className="comment-author">{ comment.author?.username }</Link>
                                                                 <span className="date-posted">{ format(new Date(comment?.createdAt), 'MMMM-dd-yyyy').replace(/-/g, " ") }</span>
                                                                 <span className="mod-options">
-                                                                    <i
+                                                                    {/* <i
                                                                         className="ion-edit"
-                                                                    ></i>
+                                                                    ></i> */}
                                                                     &nbsp;&nbsp;&nbsp;
                                                                     <i
                                                                         className="ion-trash-a"

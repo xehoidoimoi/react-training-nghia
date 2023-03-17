@@ -23,15 +23,15 @@ function Home() {
 
     //! Get Article Favorites
     const { articleFavorites } = useSelector(state => state.articleFavorites);
-    console.log("articleFavorites", articleFavorites)
+    // console.log("articleFavorites", articleFavorites)
 
     // ! Get Article Global
     const articles = useSelector(state => state.articles);
-    console.log("articles", articles.articles.articles)
+    // console.log("articles", articles.articles.articles)
 
     // ! Create Unique Current Item Article Global
     const items = articles.articles.articles ? articles.articles.articles?.concat(articleFavorites) : articles.articles;
-    console.log("items", items)
+    // console.log("items", items)
     const data = new Map();
     for (const obj of items) {
         data.set(obj?.slug, obj);
@@ -46,7 +46,7 @@ function Home() {
     // todo -----------------------------------------------------
     //! Set Article Follow (Feed)
     const { articlesFollow } = useSelector(state => state.articlesFollow);
-    console.log("articlesFollow", articlesFollow);
+    // console.log("articlesFollow", articlesFollow);
 
     // ! Create Unique Current Item Article Global Follow (Feed)
     const itemsFollow = articlesFollow?.articles ? articlesFollow?.articles?.concat(articleFavorites) : articlesFollow;

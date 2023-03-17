@@ -10,6 +10,7 @@ import LoadingSpin from "react-loading-spin";
 
 function Profile() {
     const [ show, setShow ] = useState(false);
+    const [ isFetchingArticleSlug, setIsFetchingArticleSlug ] = useState(false);
     setTimeout(() => {
         setShow(true)
     }, 1000);
@@ -24,7 +25,7 @@ function Profile() {
     const usernameUser = users.currentUser?.user.username;
 
     const [ articleSlug, setArticleSlug ] = useState(null);
-    // console.log("articleMyArticle", articleSlug);
+    // console.log("articleSlug", articleSlug);
 
     // const [ profiles, setProfiles ] = useState(null);
     // console.log("profiles", profiles)
@@ -39,15 +40,18 @@ function Profile() {
     useEffect(() => {
         // * Get Article Slugs (My Articles)
         const getArticleSlug = async () => {
+            setIsFetchingArticleSlug(true)
             try {
                 const res =
                     username === usernameUser
                         ? await userRequest.get(`articles?author=${username}&limit=20&offset=0`)
                         : await publicRequest.get(`articles?author=${username}&limit=20&offset=0`);
                 setArticleSlug(res.data)
+                setIsFetchingArticleSlug(false)
                 // console.log(res.data)
             } catch (error) {
-                console.log(error)
+                // console.log(error)
+                setIsFetchingArticleSlug(false)
             }
         };
         getArticleSlug();
@@ -121,8 +125,10 @@ function Profile() {
                                 {
                                     favorite
                                         ? <Outlet context={ { username: username === usernameUser ? users.currentUser.user.username : articleSlug && articleSlug.articles[ 0 ]?.author.username } } />
-                                        : articleSlug?.articles
-                                            ? <PaginatedItems itemsPerPage={ 5 } articles={ articleSlug?.articles } />
+                                        : !isFetchingArticleSlug
+                                            ? articleSlug?.articles.length !== 0
+                                                ? <PaginatedItems itemsPerPage={ 5 } articles={ articleSlug?.articles } />
+                                                : <div className="article-preview">No article yet...</div>
                                             : <div className="article-preview">Loading article, please wait...</div>
                                 }
                             </div>

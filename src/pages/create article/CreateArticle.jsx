@@ -66,7 +66,7 @@ function CreateArticle() {
             }
         };
         updateNewArticles(dispatch, article.slug, objUpdate, navigate, setIsFetching);
-        console.log("objUpdate", objUpdate)
+        // console.log("objUpdate", objUpdate)
     }
     return (
         <div className="editor-page">
