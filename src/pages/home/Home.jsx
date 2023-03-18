@@ -27,7 +27,7 @@ function Home() {
 
     // ! Get Article Global
     const articles = useSelector(state => state.articles);
-    // console.log("articles", articles.articles.articles)
+    console.log("articles", articles.articles.articles)
 
     // ! Create Unique Current Item Article Global
     const items = articles.articles.articles ? articles.articles.articles?.concat(articleFavorites) : articles.articles;
@@ -87,6 +87,7 @@ function Home() {
         }
         getTags();
         getTagName();
+
     }, [ dispatch, tagName, users ]);
 
     const handClick = (className) => {
